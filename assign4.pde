@@ -22,6 +22,17 @@ final int START_BUTTON_Y = 360;
 
 float[] cabbageX, cabbageY, soldierX, soldierY;
 float soldierSpeed = 2f;
+int x=0, y=0;//stone's position
+int soldierx, soldiery;//soldier's position
+int soldierSize;
+int soldierSpeed1;
+float groundhogX;//groundhog's position
+float groundhogY;
+int groundhogSize;
+final int soilSize = 80;//to remove the offset
+int cabbagex;//cabbage's position
+int cabbagey;
+int cabbageSize;
 
 float playerX, playerY;
 int playerCol, playerRow;
@@ -152,6 +163,8 @@ void draw() {
 
 		// Soil
 
+  
+
 		for(int i = 0; i < soilHealth.length; i++){
 			for (int j = 0; j < soilHealth[i].length; j++) {
 
@@ -164,6 +177,17 @@ void draw() {
 		}
 
 		// Cabbages
+   if (groundhogX < cabbagex+cabbageSize &&//hog touch cabbage
+          groundhogX+groundhogSize > cabbagex &&
+          groundhogY < cabbagey+cabbageSize &&
+          groundhogY+groundhogSize > cabbagey)
+        {
+          playerHealth+=1;
+          cabbagex=-80;//let cabbage out of the screen
+          cabbagey=-80;
+        }
+        image(cabbage, cabbagex, cabbagey);
+ 
 		// > Remember to check if playerHealth is smaller than PLAYER_MAX_HEALTH!
 
 		// Groundhog
